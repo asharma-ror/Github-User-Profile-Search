@@ -1,0 +1,119 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.form-wrapper > h3 {
+  padding-bottom: 5px;
+}
+
+.custom-image img { 
+  display: block; 
+} 
+
+.custom-card { 
+  padding: 10px 16px; 
+} 
+
+.item-list {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.item-list last-child {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: 0px;
+}
+
+.user-details {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+}
+
+.repo-details {
+  flex-grow: 1;
+  margin-left: 5px;
+}
+
+.repo-wrap-loading {
+  margin-top: 25px;
+}
+
+.repos {
+  margin-bottom: 20px;
+}
+
+.content-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.repo-item-footer {
+  margin-right: 12px;
+}
+
+.repo-item-footer-icon {
+  margin-right: 3px;
+}
+
+.repo-item-footer {
+  display: flex;
+  color: #666;
+  font-size: 13px;
+}
+
+.repo-item-last-update {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.repo-item-fork {
+  font-size: 12px;
+  margin-left: 5px;
+  color: #666;
+}
+
+.repo-item-name {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.repo-item-desc: {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
