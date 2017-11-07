@@ -6,8 +6,7 @@ import configureStore from './store/configureStore';
 
 import App from './routes';
 
-import './index.css';
-import './App.css';
+import './styles/App.css';
 import 'antd/dist/antd.css';
 
 import {BrowserRouter} from 'react-router-dom';

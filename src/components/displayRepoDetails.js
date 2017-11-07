@@ -4,7 +4,7 @@ import ItemList from './listItem';
 
 import Repo from './repos';
 
-import Styles from './styles';
+import Styles from '../styles/styles';
 
 import Loader from './loader';
 

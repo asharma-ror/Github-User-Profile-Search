@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import get from 'lodash/fp/get';
 
-import Styles from './styles';
+import Styles from '../styles/styles';
 
 import Loader from './loader';
 import Avatar from './avatar';
