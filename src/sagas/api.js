@@ -8,7 +8,7 @@ const metaweather = axios.create({
   baseURL: 'https://cors.io/?https://www.metaweather.com/api/',
 });
 
-const token = process.env.USER_SEARCH_OAUTH;
+const token = process.env.GIT_KEY;
 if (token) {
   github.defaults.headers.common.Authorization = `token ${token}`;
 }
