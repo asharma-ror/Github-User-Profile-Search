@@ -18,7 +18,7 @@ export default function profileReducer(state: Object = initialState, action: Obj
     case 'PROFILE_SUCCESS':
       return assignAll([
         state,
-        {isPending: false, userProfile: action.payload},
+        {isPending: false, userProfile: action.payload, error:null},
       ]);
 
     case 'PROFILE_FAILURE': {
@@ -28,6 +28,7 @@ export default function profileReducer(state: Object = initialState, action: Obj
         {
           isPending: false,
           error: action.payload,
+          userProfile: {},
         },
       ]);
     }

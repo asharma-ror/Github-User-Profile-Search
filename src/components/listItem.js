@@ -2,7 +2,10 @@ import React from 'react';
 
 import curry from 'lodash/fp/curry';
 import map from 'lodash/fp/map';
-// import Loading from 'components/Loading';
+
+import Styles from './styles';
+
+import Loader from './loader';
 
 const renderListItem = curry((entities, Component, id) => {
   return (
@@ -24,7 +27,7 @@ const ItemList = (props: Props) => {
   } = props;
 
   if (isPending) {
-    return <div>Loading...</div>
+    return <Loader display={true}/>
   }
 
   if (ids.length === 0) {

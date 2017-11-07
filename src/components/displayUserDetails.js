@@ -2,20 +2,33 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import PropTypes from 'prop-types';
+
 import {Input, Form, Button} from 'antd';
+
+import _ from 'lodash';
+import get from 'lodash/fp/get';
 
 import Styles from './styles';
 
+import Loader from './loader';
 import Avatar from './avatar';
 import UserStats from './userStats';
 import ProfileContainer from './repositary';
 
+import {getUserProfile} from '../actions';
+
+const getUsername = get('match.params.username');
+
 class DisplayUserDetails extends Component {
+  constructor(props) {
+    super(props);
+    if (_.isEmpty(props.profile.userProfile)) {
+      props.getUserProfile(getUsername(props));
+    }
+  }
 
-  render() {
-    const {profile, repos, repoEntities} = this.props;
-    const {isPending, error, userProfile} = profile;
-
+  renderUserProfile(userProfile) {
+    const {repos, repoEntities} = this.props;
     const {
       name, 
       login, 
@@ -26,9 +39,7 @@ class DisplayUserDetails extends Component {
       avatar_url,
       public_repos
     } = userProfile;
-
     const {isPending: repoStatus, result} = repos;
-
     return (
       <div className={'user-details'}>
         <div>
@@ -55,10 +66,44 @@ class DisplayUserDetails extends Component {
             repoIds={result}
           />
         </div>
+      </div>
+    );
+  }
+
+  renderError(error, text) {
+    if (error.response.status === 404) {
+      return (
+        <div style={Styles.loaderStyle}>
+          <h3>{`${text} Not Found`}</h3>
+        </div>
+      );
+    } else {
+      return (
+        <div style={Styles.loaderStyle}>
+          <h3>Something went wrong. Please try again!</h3>
+        </div>
+      );
+    }
+  }
+
+  render() {
+    const {isPending, error, userProfile} = this.props.profile;
+    let contents;
+
+    if (error) {
+      contents = this.renderError(error, 'Profile');
+    } else {
+      contents = this.renderUserProfile(userProfile);
+    }
+
+    return (
+      <div>
+        <Loader loaderStyle={Styles.loaderStyle} display={isPending}/>
+        {!isPending && contents}
       </div> 
     )
   }
-
+  
 }
 
 const mapStateToProps = (state) => {
@@ -69,7 +114,8 @@ const mapStateToProps = (state) => {
   }  
 };
 
-export default connect(mapStateToProps) (DisplayUserDetails);
+const mapDispatchToProps = (dispatch) => ({
+  getUserProfile: (username) => dispatch(getUserProfile(username)),
+});
 
-
-
+export default connect(mapStateToProps, mapDispatchToProps) (DisplayUserDetails);

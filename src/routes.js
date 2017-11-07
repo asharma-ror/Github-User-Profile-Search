@@ -12,10 +12,12 @@ import DisplayUserDetails from './components/displayUserDetails';
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path='/' component={SearchUserComponent}/>
-      <Route path="/:username" component={DisplayUserDetails} />
-    </Switch>
+    <div>
+      <Route component={SearchUserComponent}/>
+      <Switch>
+        <Route exact path="/:username" component={DisplayUserDetails} />
+      </Switch>
+    </div>  
   );
 }
 

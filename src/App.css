@@ -27,6 +27,8 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: bisque;
 }
 
 .form-wrapper > h3 {
@@ -56,7 +58,6 @@
 .user-details {
   display: flex;
   padding: 10px;
-  justify-content: center;
 }
 
 .repo-details {

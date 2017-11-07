@@ -4,23 +4,16 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Input, Form, Button} from 'antd';
 
+import {getUserProfile} from '../actions';
+
 const FormItem = Form.Item;
 
-type Props = {
-  onSubmit: Function,
-  initialInputValue: string,
-};
-
-type State = {
-  inputValue: string,
-};
-
-class SearchUserComponent extends Component<Props,State> {
+class SearchUserComponent extends Component {
   static defaultProps = {
     initialInputValue: '',
   };
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = {
       inputValue: props.initialInputValue,
@@ -46,7 +39,7 @@ class SearchUserComponent extends Component<Props,State> {
     event.preventDefault();
     const {inputValue} = this.state;
     if (!inputValue) return;
-    this.props.onSubmit(inputValue);
+    this.props.getUserProfile(inputValue);
     this.context.router.history.push(`/${inputValue}`);
   }
 
@@ -83,18 +76,9 @@ class SearchUserComponent extends Component<Props,State> {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSubmit(username) {
-      dispatch({
-        type: 'PROFILE_REQUEST',
-        payload: {
-          username,
-        },
-      });
-    },
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  getUserProfile: (username) => dispatch(getUserProfile(username)),
+});
 
 SearchUserComponent.contextTypes = {
   router: PropTypes.object.isRequired

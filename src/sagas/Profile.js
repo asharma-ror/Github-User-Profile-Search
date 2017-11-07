@@ -10,7 +10,6 @@ import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
 
 import api from './api';
-// import {getProfileFromCache} from 'store/reducers/Cache';
 
 const pickProfileData = flow(
   get('data'),
@@ -49,33 +48,30 @@ function* requestAdditionalProfileData(data) {
 }
 
 export function* getProfile(action) {
-  const {payload: {username}} = action;
-  // const cachedProfile = yield select(getProfileFromCache(username));
-  let profile;
+  const {payload: {username}} = action
+  let profile, isError = false;
   const meta = {fromCache: false};
 
-  // if (cachedProfile) {
-  //   profile = cachedProfile;
-  //   meta.fromCache = true;
-  // } else {
-    try {
-      const response = yield call(api.getProfile, username);
-      profile = pickProfileData(response);
-    } catch (err) {
-      yield put({
-        error: true,
-        payload: err,
-        type: 'PROFILE_FAILURE',
-      });
-    }
-  // }
+  try {
+    const response = yield call(api.getProfile, username);
+    profile = pickProfileData(response);
+  } catch (err) {
+    isError = true;
+    yield put({
+      error: true,
+      payload: err,
+      type: 'PROFILE_FAILURE',
+    });
+  }
 
-  yield put({
-    meta,
-    payload: profile,
-    type: 'PROFILE_SUCCESS',
-  });
-  yield* requestAdditionalProfileData(profile);
+  if (!isError) {
+    yield put({
+      meta,
+      payload: profile,
+      type: 'PROFILE_SUCCESS',
+    });
+    yield* requestAdditionalProfileData(profile);
+  }
 }
 
 export function* watchGetProfile() {

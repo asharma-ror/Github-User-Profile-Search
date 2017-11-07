@@ -9,7 +9,6 @@ import {normalize} from 'normalizr';
 import {
   repoSchema,
 } from './schema';
-// import {getReposFromCache} from 'store/reducers/Cache';
 
 function reposSuccessAction(data: Object, url: string, {fromCache = false} = {}) {
   return put({
@@ -25,12 +24,6 @@ function reposSuccessAction(data: Object, url: string, {fromCache = false} = {})
 
 export function* getRepos(action) {
   const {payload: {url}} = action;
-  // const cachedRepos = yield select(getReposFromCache(url));
-
-  // if (cachedRepos) {
-  //   yield reposSuccessAction(cachedRepos, url, {fromCache: true});
-  //   return;
-  // }
 
   try {
     const reposResponse = yield call(api.get, url, {
