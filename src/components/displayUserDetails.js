@@ -10,7 +10,7 @@ import Loader from './loader';
 import Avatar from './avatar';
 import UserStats from './userStats';
 import WeatherInfo from './weatherInfo';
-import ProfileContainer from './repositary';
+import DisplayRepoDetails from './displayRepoDetails';
 
 import {getUserProfile} from '../actions';
 
@@ -33,8 +33,6 @@ class DisplayUserDetails extends Component {
     const {isPending: repoStatus, result} = repos;
 
     const {weather} = this.props;
-
-    console.log('this.props.weather',this.props.weather)
 
     return (
       <div className={'user-details'}>
@@ -60,7 +58,7 @@ class DisplayUserDetails extends Component {
           />
         </div>
         <div className={'repo-details'}>
-          <ProfileContainer
+          <DisplayRepoDetails
             repoIsPending={repoStatus}
             repoEntities={repoEntities}
             repoIds={result}

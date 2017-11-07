@@ -3,8 +3,8 @@ import React from 'react';
 import parse from 'date-fns/parse';
 import distanceInWords from 'date-fns/distance_in_words';
 
-import forkIcon from './repo-forked.svg';
-import starIcon from './star.svg';
+import forkIcon from '../assets/repo-forked.svg';
+import starIcon from '../assets/star.svg';
 
 const renderFooterItem = (icon, text) => {
   return (

@@ -8,7 +8,7 @@ import {getUserProfile} from '../actions';
 
 const FormItem = Form.Item;
 
-class SearchUserComponent extends Component {
+class UserProfileComponent extends Component {
   static defaultProps = {
     initialInputValue: '',
   };
@@ -80,8 +80,8 @@ const mapDispatchToProps = (dispatch) => ({
   getUserProfile: (username) => dispatch(getUserProfile(username)),
 });
 
-SearchUserComponent.contextTypes = {
+UserProfileComponent.contextTypes = {
   router: PropTypes.object.isRequired
 }
 
-export default connect(null, mapDispatchToProps) (SearchUserComponent);
+export default connect(null, mapDispatchToProps) (UserProfileComponent);

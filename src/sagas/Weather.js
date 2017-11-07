@@ -47,7 +47,6 @@ export function* getWeather(action) {
   }
 
   if (!isError) {
-    console.warn("Data: ", weather);
     yield put({
       meta,
       payload: weather,
