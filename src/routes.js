@@ -1,11 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router';
-import {
-  HashRouter as Router,
-  Redirect,
-  Switch,
-  BrowserRouter,
-} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 
 import SearchUserComponent from './components/searchUser';
 import DisplayUserDetails from './components/displayUserDetails';

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {Input, Form, Button} from 'antd';
-
 import _ from 'lodash';
 import get from 'lodash/fp/get';
 

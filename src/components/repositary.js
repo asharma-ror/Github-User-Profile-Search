@@ -11,10 +11,6 @@ import Loader from './loader';
 
 export default class ProfileContainer extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   renderProfile() {
     const {
       repoIsPending,

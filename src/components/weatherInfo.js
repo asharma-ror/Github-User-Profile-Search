@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import moment from 'moment';
-import momentTZ from 'moment-timezone';
-
 import _ from 'lodash';
 
 import {Card} from 'antd';

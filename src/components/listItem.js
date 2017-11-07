@@ -3,8 +3,6 @@ import React from 'react';
 import curry from 'lodash/fp/curry';
 import map from 'lodash/fp/map';
 
-import Styles from './styles';
-
 import Loader from './loader';
 
 const renderListItem = curry((entities, Component, id) => {

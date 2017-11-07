@@ -1,7 +1,6 @@
 import {
   call,
   put,
-  select,
   takeLatest,
 } from 'redux-saga/effects';
 import api from './api';
@@ -27,14 +26,14 @@ export function* getWeather(action) {
   const meta = {fromCache: false};
   try {
     if (!location) {
-      throw ('Location not found');
+      throw new Error('Location not found');
     }
     if (!woeID) {
       const weatherAPIResponse = yield call(api.getWeather, location);
       if (weatherAPIResponse.data.length) {
         woeID = weatherAPIResponse.data[0].woeid;
       } else {
-        throw ('Weather data not available for location');
+        throw new Error('Weather data not available for location');
       }
     }
     const locationAPIResponse = yield call(api.getLocationData, woeID);

@@ -10,6 +10,7 @@ const renderFooterItem = (icon, text) => {
   return (
     <div className={'repo-item-footer'}>
       <img
+        alt={'icon'}
         src={icon}
         width={18}
         height={18}

@@ -1,7 +1,6 @@
 import {
   call,
   put,
-  select,
   takeLatest,
 } from 'redux-saga/effects';
 import api from './api';
