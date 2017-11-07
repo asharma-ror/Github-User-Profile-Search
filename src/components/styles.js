@@ -7,7 +7,8 @@ const Styles = {
   },
   loaderStyle: {
     textAlign: 'center',
-    marginTop: '15px'
+    marginTop: '15px',
+    paddingTop: '100px'
   }
 };
 

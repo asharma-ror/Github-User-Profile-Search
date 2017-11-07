@@ -12,7 +12,10 @@ export default function weatherReducer(state: Object = initialState, action: Obj
     case 'WEATHER_REQUEST':
       return assignAll([
         state,
-        {isPending: true},
+        {
+          isPending: true,
+          result: {},
+        },
       ]);
 
     case 'WEATHER_SUCCESS':
@@ -32,6 +35,7 @@ export default function weatherReducer(state: Object = initialState, action: Obj
         {
           isPending: false,
           error: action.payload,
+          result: {},
         },
       ]);
     }

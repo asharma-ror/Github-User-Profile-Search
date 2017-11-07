@@ -26,10 +26,15 @@ export function* getWeather(action) {
   let weather, isError = false;
   const meta = {fromCache: false};
   try {
+    if (!location) {
+      throw ('Location not found');
+    }
     if (!woeID) {
       const weatherAPIResponse = yield call(api.getWeather, location);
       if (weatherAPIResponse.data.length) {
         woeID = weatherAPIResponse.data[0].woeid;
+      } else {
+        throw ('Weather data not available for location');
       }
     }
     const locationAPIResponse = yield call(api.getLocationData, woeID);
