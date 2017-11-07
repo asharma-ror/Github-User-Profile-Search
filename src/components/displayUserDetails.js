@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import PropTypes from 'prop-types';
-
 import {Input, Form, Button} from 'antd';
 
 import _ from 'lodash';
@@ -13,6 +11,7 @@ import Styles from './styles';
 import Loader from './loader';
 import Avatar from './avatar';
 import UserStats from './userStats';
+import WeatherInfo from './weatherInfo';
 import ProfileContainer from './repositary';
 
 import {getUserProfile} from '../actions';
@@ -20,12 +19,6 @@ import {getUserProfile} from '../actions';
 const getUsername = get('match.params.username');
 
 class DisplayUserDetails extends Component {
-  constructor(props) {
-    super(props);
-    if (_.isEmpty(props.profile.userProfile)) {
-      props.getUserProfile(getUsername(props));
-    }
-  }
 
   renderUserProfile(userProfile) {
     const {repos, repoEntities} = this.props;
@@ -40,6 +33,11 @@ class DisplayUserDetails extends Component {
       public_repos
     } = userProfile;
     const {isPending: repoStatus, result} = repos;
+
+    const {weather} = this.props;
+
+    console.log('this.props.weather',this.props.weather)
+
     return (
       <div className={'user-details'}>
         <div>
@@ -57,6 +55,10 @@ class DisplayUserDetails extends Component {
             following={following}
             location={location}
             repos={public_repos}
+          />
+          <WeatherInfo
+            width={'300px'}
+            weatherInfo={weather && weather.result}
           />
         </div>
         <div className={'repo-details'}>
@@ -103,7 +105,12 @@ class DisplayUserDetails extends Component {
       </div> 
     )
   }
-  
+
+  componentDidMount() {
+    if (_.isEmpty(this.props.profile.userProfile)) {
+      this.props.getUserProfile(getUsername(this.props));
+    }
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -111,6 +118,7 @@ const mapStateToProps = (state) => {
     profile: state.profile,
     repos: state.repos,
     repoEntities: state.entities.repos,
+    weather: state.weather
   }  
 };
 

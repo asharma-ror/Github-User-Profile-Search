@@ -47,6 +47,15 @@ function* requestAdditionalProfileData(data) {
   });
 }
 
+function* requestWeatherData(data) {
+  yield put({
+    type: 'WEATHER_REQUEST',
+    payload: {
+      location: data.location,
+    },
+  });
+}
+
 export function* getProfile(action) {
   const {payload: {username}} = action
   let profile, isError = false;
@@ -71,6 +80,7 @@ export function* getProfile(action) {
       type: 'PROFILE_SUCCESS',
     });
     yield* requestAdditionalProfileData(profile);
+    yield* requestWeatherData(profile);
   }
 }
 

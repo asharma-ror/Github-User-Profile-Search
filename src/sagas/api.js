@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-export const PER_PAGE = 42;
-
 const github = axios.create({
   baseURL: 'https://api.github.com/',
+});
+
+const metaweather = axios.create({
+  baseURL: 'https://cors.io/?https://www.metaweather.com/api/',
 });
 
 const token = process.env.USER_SEARCH_OAUTH;
@@ -15,7 +17,17 @@ const getProfile = (username: string) => {
   return github.get(`/users/${username}`);
 }
 
+const getWeather = (location: string) => {
+  return metaweather.get(`/location/search/?query=${location}`);
+}
+
+const getLocationData = (ID) => {
+  return metaweather.get(`/location/${ID}`);
+}
+
 export default {
   getProfile,
+  getWeather,
+  getLocationData,
   get: github.get,
 };

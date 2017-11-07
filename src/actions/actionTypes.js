@@ -1,1 +1,2 @@
 export const GET_USER_PROFILE = 'PROFILE_REQUEST';
+export const GET_WEATHER = 'WEATHER_REQUEST';
