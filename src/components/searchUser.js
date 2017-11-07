@@ -48,7 +48,7 @@ class SearchUserComponent extends Component {
 
     return (
       <div className={'form-wrapper'}>
-      <h3>Search for a user</h3>
+        <h3>Search for a user</h3>
         <Form 
           onSubmit={this.handleOnSubmit} 
           layout='inline' 

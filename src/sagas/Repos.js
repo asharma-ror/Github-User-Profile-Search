@@ -28,7 +28,6 @@ export function* getRepos(action) {
   try {
     const reposResponse = yield call(api.get, url, {
       params: {
-        per_page: 8,
         sort: 'pushed',
       },
     });
